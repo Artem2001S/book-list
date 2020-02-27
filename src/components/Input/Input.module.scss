@@ -1,0 +1,19 @@
+@import "globalStyles/variables.scss";
+
+.input {
+  width: 320px;
+  margin-top: 5px;
+  padding: 5px 10px;
+  
+  font-size: 20px;
+  
+  border: 1px solid $input_border;
+  border-radius: 8px;
+  color: $dark_gray;
+  outline: none;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+}
