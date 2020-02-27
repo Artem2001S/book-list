@@ -1,0 +1,19 @@
+@import "globalStyles/variables.scss";
+
+.BookList {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+
+  max-width: 1400px;
+  padding: 30px;
+  margin: auto;
+
+  @include media-laptop() {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media-mobile() {
+    grid-template-columns: 1fr;
+  }
+}
