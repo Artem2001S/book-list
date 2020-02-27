@@ -21,8 +21,4 @@
   &:hover {
     background-color: lighten($color: $purple, $amount: 16);
   }
-
-  &.disabled {
-    background-color: $purple_whitesmoke;
-  }
 }
