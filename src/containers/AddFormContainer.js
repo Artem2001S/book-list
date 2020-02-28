@@ -8,8 +8,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onInputChange: (e, inputName) =>
-    dispatch(changeAddFormInputValue(e.target.value, inputName)),
+  onInputChange: (value, inputName) =>
+    dispatch(changeAddFormInputValue(value, inputName)),
   onSubmit: (bookTitle, author, category, pagesCount) => {
     const id = uuidv1();
     dispatch(addBook(id, bookTitle, author, category, pagesCount));

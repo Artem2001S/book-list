@@ -19,7 +19,7 @@ export default function AddForm({ inputs, onSubmit, onInputChange }) {
           key={input.name}
           defaultValue={input.value}
           label={input.label}
-          onChange={e => onInputChange(e, input.name)}
+          onChange={e => onInputChange(e.target.value, input.name)}
         />
       ))}
 
@@ -35,6 +35,9 @@ export default function AddForm({ inputs, onSubmit, onInputChange }) {
           }
 
           onSubmit(...inputs.map(input => input.value));
+
+          // clear form
+          inputs.forEach(input => onInputChange('', input.name));
         }}
       >
         Submit
