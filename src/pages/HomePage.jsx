@@ -1,6 +1,7 @@
 import React from 'react';
 import BookList from 'components/BookList/BookList';
 import AddFormContainer from 'containers/AddFormContainer';
+import BookListContainer from 'containers/BookListContainer';
 
 export default function HomePage() {
   const books = [
@@ -18,7 +19,7 @@ export default function HomePage() {
   return (
     <div>
       <AddFormContainer />
-      <BookList books={books} />
+      <BookListContainer />
     </div>
   );
 }
