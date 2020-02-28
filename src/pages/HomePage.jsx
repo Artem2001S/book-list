@@ -1,7 +1,6 @@
 import React from 'react';
-import Input from 'components/Input/Input';
-import Button from 'components/Button/Button';
 import BookList from 'components/BookList/BookList';
+import AddFormContainer from 'containers/AddFormContainer';
 
 export default function HomePage() {
   const books = [
@@ -18,9 +17,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <Input />
-      <Button>Btn</Button>
-
+      <AddFormContainer />
       <BookList books={books} />
     </div>
   );
