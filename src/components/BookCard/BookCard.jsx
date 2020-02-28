@@ -22,9 +22,11 @@ export default function BookCard({ book, index, deleteHandler }) {
 
 BookCard.propTypes = {
   book: PropTypes.exact({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     bookTitle: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired
+    author: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    pagesCount: PropTypes.string.isRequired
   }),
   removeHandler: PropTypes.func
 };
