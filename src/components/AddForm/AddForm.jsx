@@ -17,6 +17,7 @@ export default function AddForm({ inputs, onSubmit, onInputChange }) {
       {inputs.map(input => (
         <Input
           key={input.name}
+          defaultValue={input.value}
           label={input.label}
           onChange={e => onInputChange(e, input.name)}
         />
