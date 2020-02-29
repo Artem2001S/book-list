@@ -1,4 +1,9 @@
-import { ADD_BOOK, DELETE_BOOK, CHANGE_ADD_FORM_VALUE } from './actionTypes';
+import {
+  ADD_BOOK,
+  DELETE_BOOK,
+  CHANGE_ADD_FORM_VALUE,
+  CHANGE_SEARCH_FORM_VALUE
+} from './actionTypes';
 
 export function addBook(id, bookTitle, author, pagesCount, category) {
   return {
@@ -24,5 +29,12 @@ export function changeAddFormInputValue(newValue, inputName) {
   return {
     type: CHANGE_ADD_FORM_VALUE,
     payload: { inputName, newValue }
+  };
+}
+
+export function changeSearchFormValue(value) {
+  return {
+    type: CHANGE_SEARCH_FORM_VALUE,
+    payload: value
   };
 }
