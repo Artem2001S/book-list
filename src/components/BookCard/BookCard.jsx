@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, BrowserRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import classes from './BookCard.module.scss';
 
 export default function BookCard({ book, index, deleteHandler }) {
@@ -11,11 +11,9 @@ export default function BookCard({ book, index, deleteHandler }) {
       <button className={classes.RemoveBtn} onClick={deleteHandler}>
         &times;
       </button>
-      <BrowserRouter>
-        <Link to={`items/${index}`} className={classes.OpenBtn}>
-          Open
-        </Link>
-      </BrowserRouter>
+      <Link to={`items/${index}`} className={classes.OpenBtn}>
+        Open
+      </Link>
     </div>
   );
 }
