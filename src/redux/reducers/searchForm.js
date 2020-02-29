@@ -9,7 +9,7 @@ const initialState = {
 export default function searchFormReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_SEARCH_FORM_VALUE:
-      return { ...state, value: action.value };
+      return { ...state, value: action.payload };
     default:
       return state;
   }
