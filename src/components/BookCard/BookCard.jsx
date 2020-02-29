@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { Link, BrowserRouter } from 'react-router-dom';
 import classes from './BookCard.module.scss';
 
-export default function BookCard({ book, removeHandler }) {
+export default function BookCard({ book, index, deleteHandler }) {
   return (
     <div className={classes.BookCard}>
       <div className={classes.BookTitle}>{book.bookTitle}</div>
       <div className={classes.BookAuthors}>{book.author}</div>
-      <button className={classes.RemoveBtn} onClick={removeHandler}>
+      <button className={classes.RemoveBtn} onClick={deleteHandler}>
         &times;
       </button>
       <BrowserRouter>
-        <Link to={`items/${book.id}`} className={classes.OpenBtn}>
+        <Link to={`items/${index}`} className={classes.OpenBtn}>
           Open
         </Link>
       </BrowserRouter>
@@ -22,9 +22,11 @@ export default function BookCard({ book, removeHandler }) {
 
 BookCard.propTypes = {
   book: PropTypes.exact({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     bookTitle: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired
+    author: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    pagesCount: PropTypes.string.isRequired
   }),
   removeHandler: PropTypes.func
 };
