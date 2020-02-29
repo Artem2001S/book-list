@@ -1,6 +1,6 @@
 import React from 'react';
 import AddFormContainer from 'containers/AddFormContainer';
-import BookListContainer from 'containers/BookListContainer';
+import VisibleBookListContainer from 'containers/VisibleBookListContainer';
 import SearchFormContainer from 'containers/SearchFormContainer';
 
 export default function HomePage() {
@@ -8,7 +8,7 @@ export default function HomePage() {
     <>
       <AddFormContainer />
       <SearchFormContainer />
-      <BookListContainer />
+      <VisibleBookListContainer />
     </>
   );
 }
