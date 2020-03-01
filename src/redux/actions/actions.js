@@ -6,13 +6,13 @@ import {
   CHANGE_BOOK_CONTROL_FORM_VALUE
 } from './actionTypes';
 
-export function addBook(id, bookTitle, author, pagesCount, category) {
+export function addBook(id, bookTitle, authors, pagesCount, category) {
   return {
     type: ADD_BOOK,
     payload: {
       id,
       bookTitle,
-      author,
+      authors,
       category,
       pagesCount
     }

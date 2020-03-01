@@ -7,7 +7,7 @@ export default function BookCard({ book, index, deleteHandler }) {
   return (
     <div className={classes.BookCard}>
       <div className={classes.BookTitle}>{book.bookTitle}</div>
-      <div className={classes.BookAuthors}>{book.author}</div>
+      <div className={classes.BookAuthors}>{book.authors}</div>
       <button className={classes.RemoveBtn} onClick={deleteHandler}>
         &times;
       </button>
@@ -22,7 +22,7 @@ BookCard.propTypes = {
   book: PropTypes.exact({
     id: PropTypes.string.isRequired,
     bookTitle: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
+    authors: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     pagesCount: PropTypes.string.isRequired
   }),
