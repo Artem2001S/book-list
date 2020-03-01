@@ -1,27 +1,7 @@
+import { bookInputs } from 'CONSTANTS';
 import { CHANGE_ADD_FORM_VALUE } from 'redux/actions/actionTypes';
 
-const initialState = [
-  {
-    name: 'bookTitle',
-    label: 'Book Title',
-    value: ''
-  },
-  {
-    name: 'authors',
-    label: 'Authors',
-    value: ''
-  },
-  {
-    name: 'pagesCount',
-    label: 'Pages count',
-    value: ''
-  },
-  {
-    name: 'category',
-    label: 'Category',
-    value: ''
-  }
-];
+const initialState = [...bookInputs];
 
 export default function addFormInputsReducer(state = initialState, action) {
   const { type, payload } = action;
