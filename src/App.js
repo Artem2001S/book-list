@@ -14,6 +14,9 @@ function App() {
           <Route exact path="/">
             <HomePage />
           </Route>
+          <Route path="/search?value=:v">
+            <h1>Search</h1>
+          </Route>
           <Route exact path="/items/:itemId">
             <BookPage />
           </Route>
