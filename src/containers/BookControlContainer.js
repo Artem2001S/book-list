@@ -1,20 +1,21 @@
 import { connect } from 'react-redux';
 import BookControl from 'components/BookControl/BookControl';
-
-const addValuesToInputs = (inputs, data) => {
-  return inputs.map(input => ({
-    ...input,
-    value: data[input.name]
-  }));
-};
+import { changeBookControlFormValue, updateBook } from 'redux/actions/actions';
 
 const mapStateToProps = (state, props) => {
   const book = state.books[props.index - 1];
 
   return {
     bookData: book,
-    inputs: addValuesToInputs(state.bookControlForm, book)
+    defaultValues: book,
+    inputs: state.bookControlForm
   };
 };
 
-export default connect(mapStateToProps)(BookControl);
+const mapDispatchToProps = dispatch => ({
+  onInputChange: (value, inputName) =>
+    dispatch(changeBookControlFormValue(value, inputName)),
+  saveHandler: (id, data) => dispatch(updateBook(id, data))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookControl);
