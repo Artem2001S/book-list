@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import { v4 as uuidv1 } from 'uuid';
 import classes from './Input.module.scss';
 
-export default function Input({ label, defaultValue, onChange }) {
+export default function Input({
+  label,
+  defaultValue,
+  value,
+  onChange,
+  disabled
+}) {
   const uniqueId = uuidv1();
 
   return (
@@ -13,7 +19,9 @@ export default function Input({ label, defaultValue, onChange }) {
         id={uniqueId}
         className={classes.input}
         type="text"
-        value={defaultValue}
+        disabled={disabled}
+        defaultValue={defaultValue}
+        value={value}
         onChange={onChange}
       />
     </label>
@@ -24,5 +32,6 @@ Input.propTypes = {
   label: PropTypes.string,
   defaultValue: PropTypes.string,
   placeholder: PropTypes.string,
+  disabled: PropTypes.bool,
   onChange: PropTypes.func
 };
