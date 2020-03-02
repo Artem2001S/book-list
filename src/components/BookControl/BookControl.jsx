@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Input from 'components/Input/Input';
 import Button from 'components/Button/Button';
+import classes from './BookControl.module.scss';
 
 export default function BookControl({
   defaultValues,
@@ -15,27 +16,11 @@ export default function BookControl({
 
   return (
     <form
+      className={classes.BookControlForm}
       onSubmit={e => {
         e.preventDefault();
       }}
     >
-      <Button
-        onClick={() => {
-          if (isEditMode) {
-            const data = inputs.reduce((acc, next) => {
-              return {
-                ...acc,
-                [next.name]: next.value || defaultValues[next.name]
-              };
-            }, {});
-            saveHandler(bookData.id, data);
-          }
-          setIsEditMode(!isEditMode);
-        }}
-      >
-        {isEditMode ? 'Save' : 'Edit'}
-      </Button>
-
       {inputs.map(input => (
         <Input
           key={input.name}
@@ -47,6 +32,24 @@ export default function BookControl({
           }}
         />
       ))}
+
+      <Button
+        onClick={() => {
+          if (isEditMode) {
+            const data = inputs.reduce((acc, next) => {
+              return {
+                ...acc,
+                [next.name]: next.value || defaultValues[next.name]
+              };
+            }, {});
+            saveHandler(bookData.id, data);
+          }
+
+          setIsEditMode(!isEditMode);
+        }}
+      >
+        {isEditMode ? 'Save' : 'Edit'}
+      </Button>
     </form>
   );
 }
