@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Input from 'components/Input/Input';
 import Button from 'components/Button/Button';
 import classes from './BookControl.module.scss';
@@ -16,9 +17,12 @@ export default function BookControl({
 
   useEffect(() => {
     // send default values to redux store (for inputs)
-    Object.keys(defaultValues).forEach(name => {
-      onInputChange(defaultValues[name], name);
-    });
+    if (defaultValues && onInputChange) {
+      Object.keys(defaultValues).forEach(name => {
+        onInputChange(defaultValues[name], name);
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (bookData === undefined) {
@@ -78,3 +82,11 @@ export default function BookControl({
     </form>
   );
 }
+
+BookControl.propTypes = {
+  defaultValues: PropTypes.object,
+  inputs: PropTypes.array,
+  bookData: PropTypes.object,
+  saveHandler: PropTypes.func,
+  onInputChange: PropTypes.func
+};
