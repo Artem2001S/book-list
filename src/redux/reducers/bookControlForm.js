@@ -1,13 +1,14 @@
 import { bookInputs } from 'CONSTANTS';
-import { CHANGE_ADD_FORM_VALUE } from 'redux/actions/actionTypes';
+import { CHANGE_BOOK_CONTROL_FORM_VALUE } from 'redux/actions/actionTypes';
 
-const initialState = [...bookInputs];
-
-export default function addFormInputsReducer(state = initialState, action) {
+export default function bookControlFormReducer(
+  state = [...bookInputs],
+  action
+) {
   const { type, payload } = action;
 
   switch (type) {
-    case CHANGE_ADD_FORM_VALUE:
+    case CHANGE_BOOK_CONTROL_FORM_VALUE:
       return [
         ...state.map(inputData =>
           inputData.name === payload.inputName

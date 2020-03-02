@@ -17,7 +17,7 @@ function App() {
           <Route path="/search?value=:v">
             <h1>Search</h1>
           </Route>
-          <Route exact path="/items/:itemId">
+          <Route exact path="/items/:index">
             <BookPage />
           </Route>
           <Route path="/">

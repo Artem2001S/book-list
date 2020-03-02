@@ -1,5 +1,9 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import BookControlContainer from 'containers/BookControlContainer';
 
 export default function BookPage() {
-  return <div>Book BookPage</div>;
+  const { index } = useParams();
+
+  return <BookControlContainer index={index} />;
 }
