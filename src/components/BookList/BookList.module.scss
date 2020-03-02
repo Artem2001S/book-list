@@ -15,5 +15,6 @@
 
   @include media-mobile() {
     grid-template-columns: 1fr;
+    padding: 12px;
   }
 }
