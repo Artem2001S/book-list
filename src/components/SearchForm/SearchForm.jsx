@@ -30,7 +30,7 @@ export default function SearchForm({ input, onInputChange }) {
     >
       <Input
         label={input.label}
-        defaultValue={input.value}
+        value={input.value}
         onChange={e => {
           onInputChange(e.target.value);
 
