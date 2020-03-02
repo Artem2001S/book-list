@@ -5,10 +5,12 @@ import store from 'redux/store';
 import HomePage from 'pages/HomePage';
 import BookPage from 'pages/BookPage';
 import NotFoundPage from 'pages/NotFoundPage';
+import Header from 'components/Header/Header';
 
 function App() {
   return (
     <Provider store={store}>
+      <Header />
       <Router>
         <Switch>
           <Route exact path="/">
