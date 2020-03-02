@@ -3,7 +3,8 @@ import {
   DELETE_BOOK,
   CHANGE_ADD_FORM_VALUE,
   CHANGE_SEARCH_FORM_VALUE,
-  CHANGE_BOOK_CONTROL_FORM_VALUE
+  CHANGE_BOOK_CONTROL_FORM_VALUE,
+  UPDATE_BOOK
 } from './actionTypes';
 
 export function addBook(id, bookTitle, authors, pagesCount, category) {
@@ -23,6 +24,13 @@ export function deleteBook(bookId) {
   return {
     type: DELETE_BOOK,
     payload: bookId
+  };
+}
+
+export function updateBook(bookId, newData) {
+  return {
+    type: UPDATE_BOOK,
+    payload: { id: bookId, data: newData }
   };
 }
 
