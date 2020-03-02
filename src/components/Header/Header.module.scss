@@ -1,0 +1,13 @@
+@import "globalStyles/variables.scss";
+
+.Header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: $purple;
+  height: 80px;
+
+  font-size: 50px;
+  color: #ffffff;
+}
