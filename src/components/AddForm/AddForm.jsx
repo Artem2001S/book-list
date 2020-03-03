@@ -35,9 +35,6 @@ export default function AddForm({
           }
 
           onAdd();
-
-          // clear form
-          inputs.forEach(input => onInputChange('', input.name));
         }}
       >
         Submit
