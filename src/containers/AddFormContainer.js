@@ -8,14 +8,28 @@ const mapStateToProps = state => ({
   inputs: state.addFormInputs
 });
 
-const mapDispatchToProps = dispatch => ({
-  onInputChange: (value, inputName) =>
-    dispatch(changeAddFormInputValue(value, inputName)),
-  onAdd: (bookTitle, author, category, pagesCount) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onInputChange: (value, inputName) =>
+      dispatch(changeAddFormInputValue(value, inputName)),
+    onAdd: (id, bookTitle, authors, pagesCount, category) => {
+      dispatch(addBook(id, bookTitle, authors, pagesCount, category));
+    },
+    handleFormSubmit
+  };
+};
+
+const mergeProps = (stateProps, dispatchProps) => ({
+  ...stateProps,
+  ...dispatchProps,
+  onAdd: () => {
     const id = uuidv1();
-    dispatch(addBook(id, bookTitle, author, category, pagesCount));
-  },
-  handleFormSubmit
+    dispatchProps.onAdd(id, ...stateProps.inputs.map(input => input.value));
+  }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddForm);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(AddForm);

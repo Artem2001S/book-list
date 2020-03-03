@@ -34,7 +34,7 @@ export default function AddForm({
             setValidationErrors(true);
           }
 
-          onAdd(...inputs.map(input => input.value));
+          onAdd();
 
           // clear form
           inputs.forEach(input => onInputChange('', input.name));
