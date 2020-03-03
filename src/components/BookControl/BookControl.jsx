@@ -60,14 +60,7 @@ export default function BookControl({
               setValidationErrors(true);
             }
 
-            // get data from inputs
-            const data = inputs.reduce((acc, next) => {
-              return {
-                ...acc,
-                [next.name]: next.value
-              };
-            }, {});
-            saveHandler(bookData.id, data);
+            saveHandler();
           }
 
           setIsEditMode(!isEditMode);

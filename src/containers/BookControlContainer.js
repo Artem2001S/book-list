@@ -20,4 +20,24 @@ const mapDispatchToProps = dispatch => ({
   handleFormSubmit
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(BookControl);
+const mergeProps = (stateProps, dispatchProps) => ({
+  ...stateProps,
+  ...dispatchProps,
+  saveHandler: () => {
+    // get data from inputs
+    const data = stateProps.inputs.reduce((acc, next) => {
+      return {
+        ...acc,
+        [next.name]: next.value
+      };
+    }, {});
+
+    dispatchProps.saveHandler(stateProps.bookData.id, data);
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(BookControl);
