@@ -10,6 +10,7 @@ export default function BookControl({
   inputs,
   bookData,
   saveHandler,
+  handleFormSubmit,
   onInputChange
 }) {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -30,12 +31,7 @@ export default function BookControl({
   }
 
   return (
-    <form
-      className={classes.BookControlForm}
-      onSubmit={e => {
-        e.preventDefault();
-      }}
-    >
+    <form className={classes.BookControlForm} onSubmit={handleFormSubmit}>
       {inputs.map(input => (
         <Input
           key={input.name}
