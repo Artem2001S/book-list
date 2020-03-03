@@ -11,7 +11,7 @@ export default function BookList({ books, deleteHandler }) {
           key={book.id}
           book={book}
           index={index + 1}
-          deleteHandler={deleteHandler.bind(this, book.id)}
+          deleteHandler={deleteHandler}
         />
       ))}
     </div>
