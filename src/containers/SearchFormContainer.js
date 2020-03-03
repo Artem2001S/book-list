@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onInputChange: value => dispatch(changeSearchFormValue(value))
+  onSearchInputChange: value => dispatch(changeSearchFormValue(value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);

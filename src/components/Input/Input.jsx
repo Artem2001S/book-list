@@ -31,6 +31,7 @@ export default function Input({
 Input.propTypes = {
   label: PropTypes.string,
   defaultValue: PropTypes.string,
+  value: PropTypes.string,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   onChange: PropTypes.func

@@ -68,7 +68,7 @@ export default function BookControl({
             const data = inputs.reduce((acc, next) => {
               return {
                 ...acc,
-                [next.name]: next.value || defaultValues[next.name]
+                [next.name]: next.value
               };
             }, {});
             saveHandler(bookData.id, data);

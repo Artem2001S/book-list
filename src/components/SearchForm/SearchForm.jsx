@@ -4,7 +4,7 @@ import useQuery from 'utils/useQuery';
 import Input from 'components/Input/Input';
 import classes from './SearchForm.module.scss';
 
-export default function SearchForm({ input, onInputChange }) {
+export default function SearchForm({ input, onSearchInputChange }) {
   const history = useHistory();
 
   const value = useQuery().get('search');
@@ -12,14 +12,12 @@ export default function SearchForm({ input, onInputChange }) {
   useEffect(() => {
     if (value !== null) {
       if (input.value.trim() !== value) {
-        onInputChange(value);
+        onSearchInputChange(value);
       }
+    } else {
+      onSearchInputChange('');
     }
-
-    if (value === null) {
-      onInputChange('');
-    }
-  }, [input.value, onInputChange, value]);
+  }, [input.value, onSearchInputChange, value]);
 
   return (
     <form
@@ -32,7 +30,7 @@ export default function SearchForm({ input, onInputChange }) {
         label={input.label}
         value={input.value}
         onChange={e => {
-          onInputChange(e.target.value);
+          onSearchInputChange(e.target.value);
 
           if (e.target.value.trim()) {
             history.push(`?search=${e.target.value}`);
