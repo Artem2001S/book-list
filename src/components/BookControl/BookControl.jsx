@@ -9,7 +9,8 @@ export default function BookControl({
   defaultValues,
   inputs,
   bookData,
-  saveHandler,
+  onSave,
+  handleFormSubmit,
   onInputChange
 }) {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -30,19 +31,14 @@ export default function BookControl({
   }
 
   return (
-    <form
-      className={classes.BookControlForm}
-      onSubmit={e => {
-        e.preventDefault();
-      }}
-    >
+    <form className={classes.BookControlForm} onSubmit={handleFormSubmit}>
       {inputs.map(input => (
         <Input
           key={input.name}
           disabled={!isEditMode}
           label={input.label}
           defaultValue={defaultValues[input.name]}
-          onChange={e => {
+          handleChange={e => {
             onInputChange(e.target.value, input.name);
           }}
         />
@@ -53,7 +49,7 @@ export default function BookControl({
       )}
 
       <Button
-        onClick={() => {
+        handleClick={() => {
           if (isEditMode) {
             const validation = validateInputs(inputs);
 
@@ -64,14 +60,7 @@ export default function BookControl({
               setValidationErrors(true);
             }
 
-            // get data from inputs
-            const data = inputs.reduce((acc, next) => {
-              return {
-                ...acc,
-                [next.name]: next.value
-              };
-            }, {});
-            saveHandler(bookData.id, data);
+            onSave();
           }
 
           setIsEditMode(!isEditMode);
@@ -87,6 +76,6 @@ BookControl.propTypes = {
   defaultValues: PropTypes.object,
   inputs: PropTypes.array,
   bookData: PropTypes.object,
-  saveHandler: PropTypes.func,
+  onSave: PropTypes.func,
   onInputChange: PropTypes.func
 };

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import BookCard from 'components/BookCard/BookCard';
 import classes from './BookList.module.scss';
 
-export default function BookList({ books, deleteHandler }) {
+export default function BookList({ books, onDelete }) {
   return (
     <div className={classes.BookList}>
       {books.map((book, index) => (
@@ -11,7 +11,7 @@ export default function BookList({ books, deleteHandler }) {
           key={book.id}
           book={book}
           index={index + 1}
-          deleteHandler={deleteHandler}
+          onDelete={onDelete}
         />
       ))}
     </div>
@@ -19,5 +19,6 @@ export default function BookList({ books, deleteHandler }) {
 }
 
 BookList.propTypes = {
-  books: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired,
+  onDelete: PropTypes.func
 };

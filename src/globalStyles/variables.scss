@@ -1,21 +1,21 @@
-$input_border: #675a5a;
-$dark_gray: #1f1f1f;
+$inputBorder: #675a5a;
+$darkGray: #1f1f1f;
 $purple: #2e2258;
-$purple_whitesmoke: #928ca7;
+$purpleWhitesmoke: #928ca7;
 $blue: rgb(0, 103, 187);
 
-$laptop-width: 1200px;
-$mobile-width: 560px;
+$laptopWidth: 1200px;
+$mobileWidth: 560px;
 
 
 @mixin media-laptop {
-  @media screen and (max-width: $laptop-width) {
+  @media screen and (max-width: $laptopWidth) {
     @content;
   }
 }
 
 @mixin media-mobile {
-  @media screen and (max-width: $mobile-width) {
+  @media screen and (max-width: $mobileWidth) {
     @content;
   }
 }

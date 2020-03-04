@@ -1,5 +1,6 @@
 import { bookInputs } from 'CONSTANTS';
 import { CHANGE_BOOK_CONTROL_FORM_VALUE } from 'redux/actions/actionTypes';
+import { updateInputsArray } from 'utils/changeInputsArray';
 
 export default function bookControlFormReducer(
   state = [...bookInputs],
@@ -9,13 +10,7 @@ export default function bookControlFormReducer(
 
   switch (type) {
     case CHANGE_BOOK_CONTROL_FORM_VALUE:
-      return [
-        ...state.map(inputData =>
-          inputData.name === payload.inputName
-            ? { ...inputData, value: payload.newValue }
-            : { ...inputData }
-        )
-      ];
+      return updateInputsArray(state, payload.inputName, payload.newValue);
     default:
       return state;
   }

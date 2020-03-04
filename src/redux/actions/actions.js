@@ -4,7 +4,8 @@ import {
   CHANGE_ADD_FORM_VALUE,
   CHANGE_SEARCH_FORM_VALUE,
   CHANGE_BOOK_CONTROL_FORM_VALUE,
-  UPDATE_BOOK
+  UPDATE_BOOK,
+  RESET_ADD_FORM
 } from './actionTypes';
 
 export function addBook(id, bookTitle, authors, pagesCount, category) {
@@ -38,6 +39,12 @@ export function changeAddFormInputValue(newValue, inputName) {
   return {
     type: CHANGE_ADD_FORM_VALUE,
     payload: { inputName, newValue }
+  };
+}
+
+export function resetAddForm() {
+  return {
+    type: RESET_ADD_FORM
   };
 }
 

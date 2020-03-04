@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classes from './Button.module.scss';
 
-export default function Button({ children, onClick }) {
+export default function Button({ children, handleClick }) {
   return (
-    <button type="button" className={classes.Button} onClick={onClick}>
+    <button className={classes.Button} onClick={handleClick}>
       {children}
     </button>
   );
 }
 
 Button.propTypes = {
-  onClick: PropTypes.func
+  handleClick: PropTypes.func
 };

@@ -4,7 +4,11 @@ import useQuery from 'utils/useQuery';
 import Input from 'components/Input/Input';
 import classes from './SearchForm.module.scss';
 
-export default function SearchForm({ input, onSearchInputChange }) {
+export default function SearchForm({
+  input,
+  onSearchInputChange,
+  handleFormSubmit
+}) {
   const history = useHistory();
 
   const value = useQuery().get('search');
@@ -20,16 +24,11 @@ export default function SearchForm({ input, onSearchInputChange }) {
   }, [input.value, onSearchInputChange, value]);
 
   return (
-    <form
-      className={classes.SearchForm}
-      onSubmit={e => {
-        e.preventDefault();
-      }}
-    >
+    <form className={classes.SearchForm} onSubmit={handleFormSubmit}>
       <Input
         label={input.label}
         value={input.value}
-        onChange={e => {
+        handleChange={e => {
           onSearchInputChange(e.target.value);
 
           if (e.target.value.trim()) {

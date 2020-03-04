@@ -1,19 +1,40 @@
 import { connect } from 'react-redux';
 import { v4 as uuidv1 } from 'uuid';
 import AddForm from 'components/AddForm/AddForm';
-import { changeAddFormInputValue, addBook } from 'redux/actions/actions';
+import { handleFormSubmit } from 'utils/handleFormSubmit';
+import {
+  changeAddFormInputValue,
+  addBook,
+  resetAddForm
+} from 'redux/actions/actions';
 
 const mapStateToProps = state => ({
   inputs: state.addFormInputs
 });
 
-const mapDispatchToProps = dispatch => ({
-  onInputChange: (value, inputName) =>
-    dispatch(changeAddFormInputValue(value, inputName)),
-  onSubmit: (bookTitle, author, category, pagesCount) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onInputChange: (value, inputName) =>
+      dispatch(changeAddFormInputValue(value, inputName)),
+    onAdd: (id, bookTitle, authors, pagesCount, category) => {
+      dispatch(addBook(id, bookTitle, authors, pagesCount, category));
+      dispatch(resetAddForm());
+    },
+    handleFormSubmit
+  };
+};
+
+const mergeProps = (stateProps, dispatchProps) => ({
+  ...stateProps,
+  ...dispatchProps,
+  onAdd: () => {
     const id = uuidv1();
-    dispatch(addBook(id, bookTitle, author, category, pagesCount));
+    dispatchProps.onAdd(id, ...stateProps.inputs.map(input => input.value));
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddForm);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(AddForm);

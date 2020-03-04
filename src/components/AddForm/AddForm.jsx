@@ -4,27 +4,27 @@ import Input from 'components/Input/Input';
 import Button from 'components/Button/Button';
 import classes from './AddForm.module.scss';
 
-export default function AddForm({ inputs, onSubmit, onInputChange }) {
+export default function AddForm({
+  inputs,
+  onAdd,
+  handleFormSubmit,
+  onInputChange
+}) {
   const [validationErrors, setValidationErrors] = useState(true);
 
   return (
-    <form
-      className={classes.AddForm}
-      onSubmit={e => {
-        e.preventDefault();
-      }}
-    >
+    <form className={classes.AddForm} onSubmit={handleFormSubmit}>
       {inputs.map(input => (
         <Input
           key={input.name}
           value={input.value}
           label={input.label}
-          onChange={e => onInputChange(e.target.value, input.name)}
+          handleChange={e => onInputChange(e.target.value, input.name)}
         />
       ))}
 
       <Button
-        onClick={() => {
+        handleClick={() => {
           const validation = validateInputs(inputs);
 
           if (validation !== true) {
@@ -33,11 +33,7 @@ export default function AddForm({ inputs, onSubmit, onInputChange }) {
           } else {
             setValidationErrors(true);
           }
-
-          onSubmit(...inputs.map(input => input.value));
-
-          // clear form
-          inputs.forEach(input => onInputChange('', input.name));
+          onAdd();
         }}
       >
         Submit
