@@ -16,14 +16,14 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => ({
   onInputChange: (value, inputName) =>
     dispatch(changeBookControlFormValue(value, inputName)),
-  saveHandler: (id, data) => dispatch(updateBook(id, data)),
+  onSave: (id, data) => dispatch(updateBook(id, data)),
   handleFormSubmit
 });
 
 const mergeProps = (stateProps, dispatchProps) => ({
   ...stateProps,
   ...dispatchProps,
-  saveHandler: () => {
+  onSave: () => {
     // get data from inputs
     const data = stateProps.inputs.reduce((acc, next) => {
       return {
@@ -32,7 +32,7 @@ const mergeProps = (stateProps, dispatchProps) => ({
       };
     }, {});
 
-    dispatchProps.saveHandler(stateProps.bookData.id, data);
+    dispatchProps.onSave(stateProps.bookData.id, data);
   }
 });
 

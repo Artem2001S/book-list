@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import classes from './BookCard.module.scss';
 
-export default function BookCard({ book, index, deleteHandler }) {
-  const onDelete = useCallback(() => {
-    deleteHandler(book.id);
-  }, [book.id, deleteHandler]);
+export default function BookCard({ book, index, onDelete }) {
+  const onDeleteWithParams = useCallback(() => {
+    onDelete(book.id);
+  }, [book.id, onDelete]);
 
   return (
     <div className={classes.BookCard}>
       <div className={classes.BookTitle}>{book.bookTitle}</div>
       <div className={classes.BookAuthors}>{book.authors}</div>
-      <button className={classes.RemoveBtn} onClick={onDelete}>
+      <button className={classes.RemoveBtn} onClick={onDeleteWithParams}>
         &times;
       </button>
       <Link to={`items/${index}`} className={classes.OpenBtn}>
@@ -30,5 +30,5 @@ BookCard.propTypes = {
     category: PropTypes.string.isRequired,
     pagesCount: PropTypes.string.isRequired
   }),
-  removeHandler: PropTypes.func
+  onDelete: PropTypes.func
 };

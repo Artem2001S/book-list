@@ -7,7 +7,7 @@ export default function Input({
   label,
   defaultValue,
   value,
-  onChange,
+  handleChange,
   disabled
 }) {
   const uniqueId = uuidv1();
@@ -22,7 +22,7 @@ export default function Input({
         disabled={disabled}
         defaultValue={defaultValue}
         value={value}
-        onChange={onChange}
+        onChange={handleChange}
       />
     </label>
   );
@@ -34,5 +34,5 @@ Input.propTypes = {
   value: PropTypes.string,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
-  onChange: PropTypes.func
+  handleChange: PropTypes.func
 };

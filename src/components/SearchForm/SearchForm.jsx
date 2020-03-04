@@ -28,7 +28,7 @@ export default function SearchForm({
       <Input
         label={input.label}
         value={input.value}
-        onChange={e => {
+        handleChange={e => {
           onSearchInputChange(e.target.value);
 
           if (e.target.value.trim()) {

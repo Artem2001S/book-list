@@ -9,7 +9,7 @@ export default function BookControl({
   defaultValues,
   inputs,
   bookData,
-  saveHandler,
+  onSave,
   handleFormSubmit,
   onInputChange
 }) {
@@ -38,7 +38,7 @@ export default function BookControl({
           disabled={!isEditMode}
           label={input.label}
           defaultValue={defaultValues[input.name]}
-          onChange={e => {
+          handleChange={e => {
             onInputChange(e.target.value, input.name);
           }}
         />
@@ -49,7 +49,7 @@ export default function BookControl({
       )}
 
       <Button
-        onClick={() => {
+        handleClick={() => {
           if (isEditMode) {
             const validation = validateInputs(inputs);
 
@@ -60,7 +60,7 @@ export default function BookControl({
               setValidationErrors(true);
             }
 
-            saveHandler();
+            onSave();
           }
 
           setIsEditMode(!isEditMode);
@@ -76,6 +76,6 @@ BookControl.propTypes = {
   defaultValues: PropTypes.object,
   inputs: PropTypes.array,
   bookData: PropTypes.object,
-  saveHandler: PropTypes.func,
+  onSave: PropTypes.func,
   onInputChange: PropTypes.func
 };

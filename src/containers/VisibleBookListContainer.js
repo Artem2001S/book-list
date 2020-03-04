@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  deleteHandler: bookId => dispatch(deleteBook(bookId))
+  onDelete: bookId => dispatch(deleteBook(bookId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookList);

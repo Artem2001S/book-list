@@ -19,12 +19,12 @@ export default function AddForm({
           key={input.name}
           value={input.value}
           label={input.label}
-          onChange={e => onInputChange(e.target.value, input.name)}
+          handleChange={e => onInputChange(e.target.value, input.name)}
         />
       ))}
 
       <Button
-        onClick={() => {
+        handleClick={() => {
           const validation = validateInputs(inputs);
 
           if (validation !== true) {
@@ -33,7 +33,6 @@ export default function AddForm({
           } else {
             setValidationErrors(true);
           }
-
           onAdd();
         }}
       >
