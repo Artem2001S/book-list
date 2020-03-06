@@ -1,5 +1,7 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './rootReducer';
+import thunk from 'redux-thunk';
+import { compose } from 'recompose';
 
 const LOCAL_STORAGE_KEY = 'redux-store';
 
@@ -8,12 +10,14 @@ const preLoadedState =
 
 const store = createStore(
   rootReducer,
-  preLoadedState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 );
 
-store.subscribe(() => {
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(store.getState()));
-});
+// store.subscribe(() => {
+//   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(store.getState()));
+// });
 
 export default store;

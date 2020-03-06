@@ -1,0 +1,18 @@
+{
+  "books": [
+    {
+      "id": "6ddc4a37-bdb4-4bf0-ad8b-b46b3bf17466",
+      "bookTitle": "3132aaa",
+      "authors": "312312",
+      "category": "123132",
+      "pagesCount": "123312"
+    },
+    {
+      "id": "6c62ea6e-1a65-4dae-a870-b7d00d6deeb3",
+      "bookTitle": "1",
+      "authors": "2",
+      "category": "43312",
+      "pagesCount": "312"
+    }
+  ]
+}

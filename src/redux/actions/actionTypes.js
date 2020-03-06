@@ -1,3 +1,6 @@
+export const START_API_REQUEST = 'START_API_REQUEST';
+export const FINISH_API_REQUEST = 'FINISH_API_REQUEST';
+export const RECEIVE_BOOKS = 'RECEIVE_BOOKS';
 export const ADD_BOOK = 'ADD_BOOK';
 export const DELETE_BOOK = 'DELETE_BOOK';
 export const UPDATE_BOOK = 'UPDATE_BOOK';

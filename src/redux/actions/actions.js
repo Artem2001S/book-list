@@ -5,8 +5,30 @@ import {
   CHANGE_SEARCH_FORM_VALUE,
   CHANGE_BOOK_CONTROL_FORM_VALUE,
   UPDATE_BOOK,
-  RESET_ADD_FORM
+  RESET_ADD_FORM,
+  START_API_REQUEST,
+  FINISH_API_REQUEST,
+  RECEIVE_BOOKS
 } from './actionTypes';
+
+export function startApiRequest() {
+  return {
+    type: START_API_REQUEST
+  };
+}
+
+export function finishApiRequest() {
+  return {
+    type: FINISH_API_REQUEST
+  };
+}
+
+export function receiveBooks(books) {
+  return {
+    type: RECEIVE_BOOKS,
+    payload: books
+  };
+}
 
 export function addBook(id, bookTitle, authors, pagesCount, category) {
   return {
