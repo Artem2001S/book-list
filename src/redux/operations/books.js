@@ -9,12 +9,9 @@ export function fetchBooks() {
   return dispatch => {
     dispatch(startApiRequest());
 
-    return booksResource
-      .get('/books')
-      .then(data => data.json())
-      .then(result => {
-        dispatch(receiveBooks(result.books));
-        dispatch(finishApiRequest());
-      });
+    return booksResource.get('/books').then(result => {
+      dispatch(receiveBooks(result.data));
+      dispatch(finishApiRequest());
+    });
   };
 }

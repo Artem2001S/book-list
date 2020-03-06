@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import BookCard from 'components/BookCard/BookCard';
 import classes from './BookList.module.scss';
 
-export default function BookList({ books, onDelete }) {
+export default function BookList({ books, getBooks, onDelete }) {
+  useEffect(() => {
+    console.log('effect');
+
+    getBooks();
+  }, []);
+
   return (
     <div className={classes.BookList}>
       {books.map((book, index) => (
@@ -19,6 +25,6 @@ export default function BookList({ books, onDelete }) {
 }
 
 BookList.propTypes = {
-  books: PropTypes.array.isRequired,
+  getBooks: PropTypes.func,
   onDelete: PropTypes.func
 };
