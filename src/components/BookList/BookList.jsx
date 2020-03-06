@@ -5,9 +5,8 @@ import classes from './BookList.module.scss';
 
 export default function BookList({ books, getBooks, onDelete }) {
   useEffect(() => {
-    console.log('effect');
-
     getBooks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

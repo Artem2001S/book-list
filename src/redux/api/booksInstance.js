@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL: 'http://localhost:3030/',
+  baseURL: 'http://localhost:3030/books',
   timeout: 1000,
   headers: { 'Content-Type': 'application/json' }
 });

@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
 import BookList from 'components/BookList/BookList';
-import { deleteBook } from 'redux/actions/actions';
 import { searchByBookTitleAndAutors } from 'utils/search';
-import { fetchBooks } from 'redux/operations/books';
+import { fetchBooks, deleteBook } from 'redux/operations/books';
 
 const mapStateToProps = state => ({
   books: searchByBookTitleAndAutors(state.books, state.searchForm.value)
