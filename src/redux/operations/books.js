@@ -3,7 +3,8 @@ import {
   receiveBooks,
   finishApiRequest,
   addBook as addBookAction,
-  deleteBook as deleteBookAction
+  deleteBook as deleteBookAction,
+  updateBook as updateBookAction
 } from 'redux/actions/actions';
 import booksResource from 'redux/api/booksInstance';
 
@@ -37,6 +38,17 @@ export function addBook(id, bookTitle, authors, pagesCount, category) {
     return booksResource.post('/', book).then(() => {
       dispatch(addBookAction(id, bookTitle, authors, pagesCount, category));
       dispatch(finishApiRequest());
+    });
+  };
+}
+
+export function updateBook(id, data) {
+  return dispatch => {
+    dispatch(startApiRequest());
+
+    booksResource.put(`/${id}`, data).then(() => {
+      dispatch(finishApiRequest());
+      dispatch(updateBookAction(id, data));
     });
   };
 }

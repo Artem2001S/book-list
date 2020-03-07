@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import BookControl from 'components/BookControl/BookControl';
 import { handleFormSubmit } from 'utils/handleFormSubmit';
-import { changeBookControlFormValue, updateBook } from 'redux/actions/actions';
+import { changeBookControlFormValue } from 'redux/actions/actions';
+import { updateBook as updateBookRequest } from 'redux/operations/books';
 
 const mapStateToProps = (state, props) => {
   const book = state.books[props.index - 1];
@@ -16,7 +17,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => ({
   onInputChange: (value, inputName) =>
     dispatch(changeBookControlFormValue(value, inputName)),
-  onSave: (id, data) => dispatch(updateBook(id, data)),
+  onSave: (id, data) => dispatch(updateBookRequest(id, data)),
   handleFormSubmit
 });
 
