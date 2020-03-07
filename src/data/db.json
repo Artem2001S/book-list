@@ -1,13 +1,6 @@
 {
   "books": [
     {
-      "id": "6ddc4a37-bdb4-4bf0-ad8b-b46b3bf17466",
-      "bookTitle": "3132aaa",
-      "authors": "312312",
-      "category": "123132",
-      "pagesCount": "123312"
-    },
-    {
       "id": "9db64399-3914-4a7f-beec-db67511b7bf7",
       "bookTitle": "3",
       "authors": "321",
@@ -15,32 +8,11 @@
       "category": "12312213"
     },
     {
-      "bookTitle": "13333",
-      "authors": "21",
-      "pagesCount": "12xsxsxs",
-      "category": "1221",
-      "id": "c5df74ad-7d00-4eac-abf8-41fa7f921e2a"
-    },
-    {
-      "bookTitle": "1",
-      "authors": "2",
-      "pagesCount": "3aw",
-      "category": "4dsaw",
-      "id": "e0a11d24-43e1-4d7f-9ea8-e50b00b6ce51"
-    },
-    {
-      "id": "16c8c49d-f073-4298-af7e-6cec5709789d",
-      "bookTitle": "1",
-      "authors": "321",
-      "pagesCount": "321",
-      "category": "12"
-    },
-    {
-      "id": "f541ab76-0257-4787-8d87-3efe8e1ef13b",
-      "bookTitle": "12222222222222222222222222222222222222",
-      "authors": "1222222222222222",
-      "pagesCount": "12222",
-      "category": "122222"
+      "id": "4a55a260-6d67-4955-9c1c-0ff31f91341a",
+      "bookTitle": "321",
+      "authors": "1",
+      "pagesCount": "1",
+      "category": "321"
     }
   ]
 }

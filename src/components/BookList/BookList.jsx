@@ -1,14 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import BookCard from 'components/BookCard/BookCard';
 import classes from './BookList.module.scss';
 
-export default function BookList({ books, getBooks, onDelete }) {
-  useEffect(() => {
-    getBooks();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+export default function BookList({ books, onDelete }) {
   return (
     <div className={classes.BookList}>
       {books.map((book, index) => (

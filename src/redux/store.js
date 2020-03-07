@@ -2,6 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './rootReducer';
 import thunk from 'redux-thunk';
 import { compose } from 'recompose';
+import { fetchBooks } from './operations/books';
 
 const LOCAL_STORAGE_KEY = 'redux-store';
 
@@ -22,5 +23,7 @@ const store = createStore(
 store.subscribe(() => {
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(store.getState()));
 });
+
+store.dispatch(fetchBooks());
 
 export default store;
