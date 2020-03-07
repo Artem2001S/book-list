@@ -4,11 +4,13 @@ import Input from 'components/Input/Input';
 import Button from 'components/Button/Button';
 import classes from './BookControl.module.scss';
 import { validateInputs } from 'utils/validateInputs';
+import Loader from 'components/Loader/Loader';
 
 export default function BookControl({
   defaultValues,
   inputs,
   bookData,
+  isLoading,
   onSave,
   handleFormSubmit,
   onInputChange
@@ -47,6 +49,8 @@ export default function BookControl({
       {validationErrors === true || (
         <h1 className={classes.ErrorAlert}>{validationErrors}</h1>
       )}
+
+      {isLoading && <Loader />}
 
       <Button
         handleClick={() => {

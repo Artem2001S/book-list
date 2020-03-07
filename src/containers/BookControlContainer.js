@@ -10,7 +10,8 @@ const mapStateToProps = (state, props) => {
   return {
     bookData: book,
     defaultValues: book,
-    inputs: state.bookControlForm
+    inputs: state.bookControlForm,
+    isLoading: state.UI.isLoading
   };
 };
 

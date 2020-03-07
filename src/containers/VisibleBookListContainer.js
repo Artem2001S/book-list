@@ -4,7 +4,8 @@ import { searchByBookTitleAndAutors } from 'utils/search';
 import { deleteBook } from 'redux/operations/books';
 
 const mapStateToProps = state => ({
-  books: searchByBookTitleAndAutors(state.books, state.searchForm.value)
+  books: searchByBookTitleAndAutors(state.books, state.searchForm.value),
+  isLoading: state.UI.isLoading
 });
 
 const mapDispatchToProps = dispatch => ({
