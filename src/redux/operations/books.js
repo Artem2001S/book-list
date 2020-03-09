@@ -1,6 +1,5 @@
 import {
   startApiRequest,
-  receiveBooks,
   finishApiRequest,
   addBook as addBookAction,
   deleteBook as deleteBookAction,
@@ -9,14 +8,7 @@ import {
 import booksResource from 'redux/api/booksInstance';
 
 export function fetchBooks() {
-  return dispatch => {
-    dispatch(startApiRequest());
-
-    return booksResource.get('/').then(result => {
-      dispatch(receiveBooks(result.data));
-      dispatch(finishApiRequest());
-    });
-  };
+  return booksResource.get('/').then(result => result.data);
 }
 
 export function deleteBook(id) {

@@ -8,7 +8,8 @@ import {
   RESET_ADD_FORM,
   START_API_REQUEST,
   FINISH_API_REQUEST,
-  RECEIVE_BOOKS
+  RECEIVE_BOOKS,
+  LOAD_BOOKS
 } from './actionTypes';
 
 export function startApiRequest() {
@@ -27,6 +28,12 @@ export function receiveBooks(books) {
   return {
     type: RECEIVE_BOOKS,
     payload: books
+  };
+}
+
+export function loadBooks() {
+  return {
+    type: LOAD_BOOKS
   };
 }
 
