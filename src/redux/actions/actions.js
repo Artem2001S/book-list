@@ -10,7 +10,8 @@ import {
   FINISH_API_REQUEST,
   RECEIVE_BOOKS,
   LOAD_BOOKS,
-  REQUEST_DELETE_BOOK
+  REQUEST_DELETE_BOOK,
+  REQUEST_ADD_BOOK
 } from './actionTypes';
 
 export function startApiRequest() {
@@ -38,16 +39,17 @@ export function loadBooks() {
   };
 }
 
-export function addBook(id, bookTitle, authors, pagesCount, category) {
+export function addBookRequest(id, bookTitle, authors, pagesCount, category) {
+  return {
+    type: REQUEST_ADD_BOOK,
+    payload: { id, bookTitle, authors, pagesCount, category }
+  };
+}
+
+export function addBook(book) {
   return {
     type: ADD_BOOK,
-    payload: {
-      id,
-      bookTitle,
-      authors,
-      category,
-      pagesCount
-    }
+    payload: book
   };
 }
 

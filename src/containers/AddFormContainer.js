@@ -2,8 +2,11 @@ import { connect } from 'react-redux';
 import { v4 as uuidv1 } from 'uuid';
 import AddForm from 'components/AddForm/AddForm';
 import { handleFormSubmit } from 'utils/handleFormSubmit';
-import { changeAddFormInputValue, resetAddForm } from 'redux/actions/actions';
-import { addBook as addBookRequest } from 'redux/operations/books';
+import {
+  changeAddFormInputValue,
+  resetAddForm,
+  addBookRequest
+} from 'redux/actions/actions';
 
 const mapStateToProps = state => ({
   inputs: state.addFormInputs

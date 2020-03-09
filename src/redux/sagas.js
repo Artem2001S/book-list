@@ -1,14 +1,20 @@
 import { takeEvery, call, put, all } from 'redux-saga/effects';
-import { LOAD_BOOKS, REQUEST_DELETE_BOOK } from './actions/actionTypes';
+import {
+  LOAD_BOOKS,
+  REQUEST_DELETE_BOOK,
+  REQUEST_ADD_BOOK
+} from './actions/actionTypes';
 import {
   fetchBooks,
-  deleteBook as deleteBookRequest
+  deleteBook as deleteBookRequest,
+  addBook as addBookRequest
 } from './operations/books';
 import {
   receiveBooks,
   startApiRequest,
   finishApiRequest,
-  deleteBook
+  deleteBook,
+  addBook
 } from './actions/actions';
 
 export function* rootSaga() {
@@ -18,6 +24,7 @@ export function* rootSaga() {
 function* watchBooks() {
   yield takeEvery(LOAD_BOOKS, workerLoadBooks);
   yield takeEvery(REQUEST_DELETE_BOOK, workerDeleteBooks);
+  yield takeEvery(REQUEST_ADD_BOOK, workerAddBook);
 }
 
 function* workerLoadBooks() {
@@ -33,4 +40,10 @@ function* workerDeleteBooks({ payload }) {
   yield call(deleteBookRequest, payload);
 
   yield put(deleteBook(payload));
+}
+
+function* workerAddBook({ payload }) {
+  yield call(addBookRequest, payload);
+
+  yield put(addBook(payload));
 }
