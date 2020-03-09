@@ -1,8 +1,10 @@
 import { connect } from 'react-redux';
 import BookControl from 'components/BookControl/BookControl';
 import { handleFormSubmit } from 'utils/handleFormSubmit';
-import { changeBookControlFormValue } from 'redux/actions/actions';
-import { updateBook as updateBookRequest } from 'redux/operations/books';
+import {
+  changeBookControlFormValue,
+  updateBookRequest
+} from 'redux/actions/actions';
 
 const mapStateToProps = (state, props) => {
   const book = state.books[props.index - 1];

@@ -8,11 +8,11 @@
       "category": "123"
     },
     {
-      "id": "81ae8fca-74ab-4dca-a964-8c66bc580b14",
       "bookTitle": "1",
       "authors": "111",
       "pagesCount": "12",
-      "category": "12"
+      "category": "123",
+      "id": "81ae8fca-74ab-4dca-a964-8c66bc580b14"
     }
   ]
 }

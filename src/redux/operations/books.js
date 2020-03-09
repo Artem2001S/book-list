@@ -1,8 +1,3 @@
-import {
-  startApiRequest,
-  finishApiRequest,
-  updateBook as updateBookAction
-} from 'redux/actions/actions';
 import booksResource from 'redux/api/booksInstance';
 
 export function fetchBooks() {
@@ -18,12 +13,5 @@ export function addBook(book) {
 }
 
 export function updateBook(id, data) {
-  return dispatch => {
-    dispatch(startApiRequest());
-
-    booksResource.put(`/${id}`, data).then(() => {
-      dispatch(finishApiRequest());
-      dispatch(updateBookAction(id, data));
-    });
-  };
+  return booksResource.put(`/${id}`, data);
 }

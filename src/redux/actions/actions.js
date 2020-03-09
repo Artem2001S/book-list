@@ -11,7 +11,8 @@ import {
   RECEIVE_BOOKS,
   LOAD_BOOKS,
   REQUEST_DELETE_BOOK,
-  REQUEST_ADD_BOOK
+  REQUEST_ADD_BOOK,
+  REQUEST_UPDATE_BOOK
 } from './actionTypes';
 
 export function startApiRequest() {
@@ -64,6 +65,13 @@ export function deleteBook(bookId) {
   return {
     type: DELETE_BOOK,
     payload: bookId
+  };
+}
+
+export function updateBookRequest(bookId, newData) {
+  return {
+    type: REQUEST_UPDATE_BOOK,
+    payload: { id: bookId, data: newData }
   };
 }
 
