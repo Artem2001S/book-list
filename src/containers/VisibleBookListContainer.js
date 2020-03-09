@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import BookList from 'components/BookList/BookList';
-import { searchByBookTitleAndAutors } from 'utils/search';
+import { searchByBookTitleAndAuthors } from 'utils/search';
 import { deleteBookRequest } from 'redux/actions/actions';
 
 const mapStateToProps = state => ({
-  books: searchByBookTitleAndAutors(state.books, state.searchForm.value),
+  books: searchByBookTitleAndAuthors(state.books, state.searchForm.value),
   isLoading: state.UI.isLoading
 });
 
