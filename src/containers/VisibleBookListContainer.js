@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import BookList from 'components/BookList/BookList';
 import { searchByBookTitleAndAutors } from 'utils/search';
-import { deleteBook } from 'redux/operations/books';
+import { deleteBookRequest } from 'redux/actions/actions';
 
 const mapStateToProps = state => ({
   books: searchByBookTitleAndAutors(state.books, state.searchForm.value),
@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onDelete: bookId => dispatch(deleteBook(bookId))
+  onDelete: bookId => dispatch(deleteBookRequest(bookId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookList);
