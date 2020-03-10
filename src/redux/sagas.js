@@ -17,7 +17,8 @@ import {
   finishApiRequest,
   deleteBook,
   addBook,
-  updateBook
+  updateBook,
+  errorApiRequest
 } from './actions/actions';
 
 export function* rootSaga() {
@@ -32,37 +33,52 @@ function* watchBooks() {
 }
 
 function* workerLoadBooks() {
-  yield put(startApiRequest());
+  try {
+    yield put(startApiRequest());
 
-  const data = yield call(fetchBooks);
-  yield put(receiveBooks(data));
+    const data = yield call(fetchBooks);
+    yield put(receiveBooks(data));
 
-  yield put(finishApiRequest());
+    yield put(finishApiRequest());
+  } catch (err) {
+    yield put(errorApiRequest(err.message));
+  }
 }
 
 function* workerDeleteBooks({ payload }) {
   yield put(startApiRequest());
 
-  yield call(deleteBookRequest, payload);
-
-  yield put(deleteBook(payload));
-  yield put(finishApiRequest());
+  try {
+    yield call(deleteBookRequest, payload);
+    yield put(deleteBook(payload));
+    yield put(finishApiRequest());
+  } catch (err) {
+    yield put(errorApiRequest(err.message));
+  }
 }
 
 function* workerAddBook({ payload }) {
-  yield put(startApiRequest());
+  try {
+    yield put(startApiRequest());
 
-  yield call(addBookRequest, payload);
+    yield call(addBookRequest, payload);
 
-  yield put(addBook(payload));
-  yield put(finishApiRequest());
+    yield put(addBook(payload));
+    yield put(finishApiRequest());
+  } catch (err) {
+    yield put(errorApiRequest(err.message));
+  }
 }
 
 function* workerUpdateBook({ payload }) {
-  yield put(startApiRequest());
+  try {
+    yield put(startApiRequest());
 
-  yield call(updateBookRequest, payload.id, payload.data);
+    yield call(updateBookRequest, payload.id, payload.data);
 
-  yield put(updateBook(payload.id, payload.data));
-  yield put(finishApiRequest());
+    yield put(updateBook(payload.id, payload.data));
+    yield put(finishApiRequest());
+  } catch (err) {
+    yield put(errorApiRequest(err.message));
+  }
 }
