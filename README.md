@@ -1,10 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Getting start
-1. Run `npm i`
-2. Run `npm start`
-3. Run `npm i -g json-server`
-4. Run `json-server --watch src/data/db.json --port 3030`
 
 ## Available Scripts
 
