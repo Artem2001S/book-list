@@ -5,7 +5,8 @@ import { deleteBookRequest } from 'redux/actions/actions';
 
 const mapStateToProps = state => ({
   books: searchByBookTitleAndAuthors(state.books, state.searchForm.value),
-  isLoading: state.UI.isLoading
+  isLoading: state.UI.isLoading,
+  haveErrors: state.UI.haveErrors
 });
 
 const mapDispatchToProps = dispatch => ({

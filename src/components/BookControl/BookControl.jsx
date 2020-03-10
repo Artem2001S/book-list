@@ -5,12 +5,14 @@ import Button from 'components/Button/Button';
 import classes from './BookControl.module.scss';
 import { validateInputs } from 'utils/validateInputs';
 import Loader from 'components/Loader/Loader';
+import Error from 'components/Error/Error';
 
 export default function BookControl({
   defaultValues,
   inputs,
   bookData,
   isLoading,
+  haveErrors,
   onSave,
   handleFormSubmit,
   onInputChange
@@ -31,6 +33,8 @@ export default function BookControl({
   if (bookData === undefined) {
     return <h1>Book not found</h1>;
   }
+
+  if (haveErrors) return <Error message={haveErrors} />;
 
   return (
     <>

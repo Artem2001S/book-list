@@ -13,7 +13,8 @@ const mapStateToProps = (state, props) => {
     bookData: book,
     defaultValues: book,
     inputs: state.bookControlForm,
-    isLoading: state.UI.isLoading
+    isLoading: state.UI.isLoading,
+    haveErrors: state.UI.haveErrors
   };
 };
 

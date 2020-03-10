@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import BookCard from 'components/BookCard/BookCard';
 import classes from './BookList.module.scss';
 import Loader from 'components/Loader/Loader';
+import Error from 'components/Error/Error';
 
-export default function BookList({ books, isLoading, onDelete }) {
+export default function BookList({ books, isLoading, haveErrors, onDelete }) {
+  if (haveErrors) return <Error message={haveErrors} />;
+
   return (
     <div className={classes.BookList}>
       {isLoading ? (
