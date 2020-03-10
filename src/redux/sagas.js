@@ -41,18 +41,28 @@ function* workerLoadBooks() {
 }
 
 function* workerDeleteBooks({ payload }) {
+  yield put(startApiRequest());
+
   yield call(deleteBookRequest, payload);
 
   yield put(deleteBook(payload));
+  yield put(finishApiRequest());
 }
 
 function* workerAddBook({ payload }) {
+  yield put(startApiRequest());
+
   yield call(addBookRequest, payload);
 
   yield put(addBook(payload));
+  yield put(finishApiRequest());
 }
 
 function* workerUpdateBook({ payload }) {
+  yield put(startApiRequest());
+
   yield call(updateBookRequest, payload.id, payload.data);
+
   yield put(updateBook(payload.id, payload.data));
+  yield put(finishApiRequest());
 }
