@@ -12,7 +12,8 @@ import {
   LOAD_BOOKS,
   REQUEST_DELETE_BOOK,
   REQUEST_ADD_BOOK,
-  REQUEST_UPDATE_BOOK
+  REQUEST_UPDATE_BOOK,
+  ERROR_API_REQUEST
 } from './actionTypes';
 
 export function startApiRequest() {
@@ -24,6 +25,13 @@ export function startApiRequest() {
 export function finishApiRequest() {
   return {
     type: FINISH_API_REQUEST
+  };
+}
+
+export function errorApiRequest(errorMessage) {
+  return {
+    type: ERROR_API_REQUEST,
+    payload: errorMessage
   };
 }
 
