@@ -1,0 +1,14 @@
+.Error {
+  position: fixed;
+  right: 20px;
+  top: 90px;
+  z-index: 10;
+
+  max-width: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  
+  font-size: 18px;
+  background-color: rgb(167, 17, 17);
+  color: #ffffff;
+}
