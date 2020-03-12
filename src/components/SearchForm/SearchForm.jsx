@@ -14,7 +14,7 @@ export default function SearchForm({
   const value = useQuery().get('search');
 
   useEffect(() => {
-    if (value !== null) {
+    if (value) {
       if (input.value.trim() !== value) {
         onSearchInputChange(value);
       }

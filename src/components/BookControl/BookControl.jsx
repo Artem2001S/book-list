@@ -30,7 +30,7 @@ export default function BookControl({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (bookData === undefined) {
+  if (!bookData) {
     return <h1>Book not found</h1>;
   }
 
@@ -54,7 +54,7 @@ export default function BookControl({
             />
           ))}
 
-          {validationErrors === true || (
+          {validationErrors && (
             <h1 className={classes.ErrorAlert}>{validationErrors}</h1>
           )}
 
@@ -63,7 +63,7 @@ export default function BookControl({
               if (isEditMode) {
                 const validation = validateInputs(inputs);
 
-                if (validation !== true) {
+                if (typeof validation === 'string') {
                   setValidationErrors(validation);
                   return;
                 } else {

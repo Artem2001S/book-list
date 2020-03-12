@@ -27,7 +27,7 @@ export default function AddForm({
         handleClick={() => {
           const validation = validateInputs(inputs);
 
-          if (validation !== true) {
+          if (typeof validation === 'string') {
             setValidationErrors(validation);
             return;
           } else {
@@ -38,7 +38,7 @@ export default function AddForm({
       >
         Submit
       </Button>
-      {validationErrors === true || (
+      {validationErrors && (
         <h1 className={classes.ErrorAlert}>{validationErrors}</h1>
       )}
     </form>
