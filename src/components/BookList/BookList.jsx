@@ -10,18 +10,15 @@ export default function BookList({ books, isLoading, haveErrors, onDelete }) {
 
   return (
     <div className={classes.BookList}>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        books.map((book, index) => (
-          <BookCard
-            key={book.id}
-            book={book}
-            index={index + 1}
-            onDelete={onDelete}
-          />
-        ))
-      )}
+      {books.map((book, index) => (
+        <BookCard
+          key={book.id}
+          book={book}
+          index={index + 1}
+          onDelete={onDelete}
+        />
+      ))}
+      {isLoading && <Loader />}
     </div>
   );
 }

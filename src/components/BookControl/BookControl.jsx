@@ -37,50 +37,46 @@ export default function BookControl({
   if (haveErrors) return <Error message={haveErrors} />;
 
   return (
-    <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <form className={classes.BookControlForm} onSubmit={handleFormSubmit}>
-          {inputs.map(input => (
-            <Input
-              key={input.name}
-              disabled={!isEditMode}
-              label={input.label}
-              defaultValue={defaultValues[input.name]}
-              handleChange={e => {
-                onInputChange(e.target.value, input.name);
-              }}
-            />
-          ))}
+    <form className={classes.BookControlForm} onSubmit={handleFormSubmit}>
+      {inputs.map(input => (
+        <Input
+          key={input.name}
+          disabled={!isEditMode}
+          label={input.label}
+          defaultValue={defaultValues[input.name]}
+          handleChange={e => {
+            onInputChange(e.target.value, input.name);
+          }}
+        />
+      ))}
 
-          {validationErrors && (
-            <h1 className={classes.ErrorAlert}>{validationErrors}</h1>
-          )}
-
-          <Button
-            handleClick={() => {
-              if (isEditMode) {
-                const validation = validateInputs(inputs);
-
-                if (typeof validation === 'string') {
-                  setValidationErrors(validation);
-                  return;
-                } else {
-                  setValidationErrors(true);
-                }
-
-                onSave();
-              }
-
-              setIsEditMode(!isEditMode);
-            }}
-          >
-            {isEditMode ? 'Save' : 'Edit'}
-          </Button>
-        </form>
+      {validationErrors && (
+        <h1 className={classes.ErrorAlert}>{validationErrors}</h1>
       )}
-    </>
+
+      <Button
+        handleClick={() => {
+          if (isEditMode) {
+            const validation = validateInputs(inputs);
+
+            if (typeof validation === 'string') {
+              setValidationErrors(validation);
+              return;
+            } else {
+              setValidationErrors(true);
+            }
+
+            onSave();
+          }
+
+          setIsEditMode(!isEditMode);
+        }}
+      >
+        {isEditMode ? 'Save' : 'Edit'}
+      </Button>
+
+      {isLoading && <Loader />}
+    </form>
   );
 }
 
