@@ -1,30 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Input from 'components/Input/Input';
 import Button from 'components/Button/Button';
 import classes from './BookControl.module.scss';
-import { validateInputs } from 'utils/validateInputs';
 import Loader from 'components/Loader/Loader';
 import Error from 'components/Error/Error';
 
 export default function BookControl({
   defaultValues,
   inputs,
+  isEditMode,
   bookData,
+  validationStatus,
   isLoading,
   haveErrors,
+  inputChangeHandlers,
   onSave,
   handleFormSubmit,
-  onInputChange
+  changeInputValue
 }) {
-  const [isEditMode, setIsEditMode] = useState(false);
-  const [validationErrors, setValidationErrors] = useState(true);
-
   useEffect(() => {
     // send default values to redux store (for inputs)
-    if (defaultValues && onInputChange) {
+    if (defaultValues && changeInputValue) {
       Object.keys(defaultValues).forEach(name => {
-        onInputChange(defaultValues[name], name);
+        changeInputValue(defaultValues[name], name);
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -44,36 +43,15 @@ export default function BookControl({
           disabled={!isEditMode}
           label={input.label}
           defaultValue={defaultValues[input.name]}
-          handleChange={e => {
-            onInputChange(e.target.value, input.name);
-          }}
+          handleChange={inputChangeHandlers[input.name]}
         />
       ))}
 
-      {validationErrors && (
-        <h1 className={classes.ErrorAlert}>{validationErrors}</h1>
+      {validationStatus && (
+        <h1 className={classes.ErrorAlert}>{validationStatus}</h1>
       )}
 
-      <Button
-        handleClick={() => {
-          if (isEditMode) {
-            const validation = validateInputs(inputs);
-
-            if (typeof validation === 'string') {
-              setValidationErrors(validation);
-              return;
-            } else {
-              setValidationErrors(true);
-            }
-
-            onSave();
-          }
-
-          setIsEditMode(!isEditMode);
-        }}
-      >
-        {isEditMode ? 'Save' : 'Edit'}
-      </Button>
+      <Button handleClick={onSave}>{isEditMode ? 'Save' : 'Edit'}</Button>
 
       {isLoading && <Loader />}
     </form>

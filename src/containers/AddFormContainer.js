@@ -8,6 +8,7 @@ import {
   resetAddForm,
   addBookRequest
 } from 'redux/actions/actions';
+import { createInputChangeHandlers } from 'utils/createInputChangeHandlers';
 
 const mapStateToProps = state => ({
   inputs: state.addFormInputs
@@ -27,15 +28,10 @@ const mapDispatchToProps = dispatch => {
 
 const mergeProps = (stateProps, dispatchProps) => {
   const validationErrors = validateInputs(stateProps.inputs);
-  const inputChangeHandlers = {};
-
-  // bind functions for handle input change event
-  stateProps.inputs.forEach(input => {
-    inputChangeHandlers[input.name] = dispatchProps.onInputChange.bind(
-      this,
-      input.name
-    );
-  });
+  const inputChangeHandlers = createInputChangeHandlers(
+    stateProps.inputs,
+    dispatchProps.onInputChange
+  );
 
   return {
     ...stateProps,

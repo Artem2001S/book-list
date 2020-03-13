@@ -3,8 +3,12 @@ import BookControl from 'components/BookControl/BookControl';
 import { handleFormSubmit } from 'utils/handleFormSubmit';
 import {
   changeBookControlFormValue,
-  updateBookRequest
+  updateBookRequest,
+  changeBookControlFormEditMode,
+  validateBookControlForm
 } from 'redux/actions/actions';
+import { createInputChangeHandlers } from 'utils/createInputChangeHandlers';
+import { validateInputs } from 'utils/validateInputs';
 
 const mapStateToProps = (state, props) => {
   const book = state.books[props.index - 1];
@@ -12,34 +16,60 @@ const mapStateToProps = (state, props) => {
   return {
     bookData: book,
     defaultValues: book,
-    inputs: state.bookControlForm,
+    isEditMode: state.bookControlForm.isEditMode,
+    validationStatus: state.bookControlForm.validationMessage,
+    inputs: state.bookControlForm.inputs,
     isLoading: state.UI.isLoading,
     haveErrors: state.UI.haveErrors
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  onInputChange: (value, inputName) =>
+  handleInputChange: (inputName, e) =>
+    dispatch(changeBookControlFormValue(e.target.value, inputName)),
+  changeInputValue: (value, inputName) =>
     dispatch(changeBookControlFormValue(value, inputName)),
   onSave: (id, data) => dispatch(updateBookRequest(id, data)),
+  changeEditMode: () => dispatch(changeBookControlFormEditMode()),
+  validateInputs: message => dispatch(validateBookControlForm(message)),
   handleFormSubmit
 });
 
-const mergeProps = (stateProps, dispatchProps) => ({
-  ...stateProps,
-  ...dispatchProps,
-  onSave: () => {
-    // get data from inputs
-    const data = stateProps.inputs.reduce((acc, next) => {
-      return {
-        ...acc,
-        [next.name]: next.value
-      };
-    }, {});
+const mergeProps = (stateProps, dispatchProps) => {
+  const inputChangeHandlers = createInputChangeHandlers(
+    stateProps.inputs,
+    dispatchProps.handleInputChange
+  );
 
-    dispatchProps.onSave(stateProps.bookData.id, data);
-  }
-});
+  return {
+    ...stateProps,
+    ...dispatchProps,
+    inputChangeHandlers,
+    onSave: () => {
+      if (stateProps.isEditMode) {
+        const validationMessage = validateInputs(stateProps.inputs);
+
+        if (typeof validationMessage === 'string') {
+          dispatchProps.validateInputs(validationMessage);
+          return;
+        }
+
+        // get data from inputs
+        const data = stateProps.inputs.reduce((acc, next) => {
+          return {
+            ...acc,
+            [next.name]: next.value
+          };
+        }, {});
+
+        dispatchProps.onSave(stateProps.bookData.id, data);
+        dispatchProps.validateInputs('');
+      }
+
+      dispatchProps.changeEditMode();
+    }
+  };
+};
 
 export default connect(
   mapStateToProps,

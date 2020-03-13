@@ -13,7 +13,9 @@ import {
   REQUEST_DELETE_BOOK,
   REQUEST_ADD_BOOK,
   REQUEST_UPDATE_BOOK,
-  ERROR_API_REQUEST
+  ERROR_API_REQUEST,
+  CHANGE_BOOK_CONTROL_FORM_EDIT_MODE,
+  VALIDATE_BOOK_CONTROL_FORM
 } from './actionTypes';
 
 export function startApiRequest() {
@@ -115,4 +117,14 @@ export function changeBookControlFormValue(newValue, inputName) {
     type: CHANGE_BOOK_CONTROL_FORM_VALUE,
     payload: { inputName, newValue }
   };
+}
+
+export function changeBookControlFormEditMode() {
+  return {
+    type: CHANGE_BOOK_CONTROL_FORM_EDIT_MODE
+  };
+}
+
+export function validateBookControlForm(message) {
+  return { type: VALIDATE_BOOK_CONTROL_FORM, message };
 }
