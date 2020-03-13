@@ -6,12 +6,14 @@ import { validateInputs } from 'utils/validateInputs';
 import {
   changeAddFormInputValue,
   resetAddForm,
-  addBookRequest
+  addBookRequest,
+  validateAddForm
 } from 'redux/actions/actions';
 import { createInputChangeHandlers } from 'utils/createInputChangeHandlers';
 
 const mapStateToProps = state => ({
-  inputs: state.addFormInputs
+  inputs: state.addFormInputs.inputs,
+  validationErrors: state.addFormInputs.validationMessage
 });
 
 const mapDispatchToProps = dispatch => {
@@ -22,12 +24,12 @@ const mapDispatchToProps = dispatch => {
       dispatch(addBookRequest(id, bookTitle, authors, pagesCount, category));
       dispatch(resetAddForm());
     },
+    validateForm: message => dispatch(validateAddForm(message)),
     handleFormSubmit
   };
 };
 
 const mergeProps = (stateProps, dispatchProps) => {
-  const validationErrors = validateInputs(stateProps.inputs);
   const inputChangeHandlers = createInputChangeHandlers(
     stateProps.inputs,
     dispatchProps.onInputChange
@@ -37,12 +39,18 @@ const mergeProps = (stateProps, dispatchProps) => {
     ...stateProps,
     ...dispatchProps,
     inputChangeHandlers,
-    validationErrors,
     onAdd: () => {
+      const validationErrors = validateInputs(stateProps.inputs);
+
       // if don't have validation errors - add book
       if (typeof validationErrors !== 'string') {
         const id = uuidv1();
+        dispatchProps.validateForm('');
         dispatchProps.onAdd(id, ...stateProps.inputs.map(input => input.value));
+      } else {
+        console.log('err');
+
+        dispatchProps.validateForm(validationErrors);
       }
     }
   };

@@ -15,7 +15,8 @@ import {
   REQUEST_UPDATE_BOOK,
   ERROR_API_REQUEST,
   CHANGE_BOOK_CONTROL_FORM_EDIT_MODE,
-  VALIDATE_BOOK_CONTROL_FORM
+  VALIDATE_BOOK_CONTROL_FORM,
+  VALIDATE_ADD_FORM
 } from './actionTypes';
 
 export function startApiRequest() {
@@ -126,5 +127,9 @@ export function changeBookControlFormEditMode() {
 }
 
 export function validateBookControlForm(message) {
-  return { type: VALIDATE_BOOK_CONTROL_FORM, message };
+  return { type: VALIDATE_BOOK_CONTROL_FORM, payload: message };
+}
+
+export function validateAddForm(message) {
+  return { type: VALIDATE_ADD_FORM, payload: message };
 }
