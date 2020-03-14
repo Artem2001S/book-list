@@ -12,4 +12,26 @@ const mapDispatchToProps = dispatch => ({
   handleFormSubmit
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);
+const mergeProps = (stateProps, dispatchProps) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+
+  return {
+    ...stateProps,
+    ...dispatchProps,
+    handleSearchInputChange: (history, e) => {
+      dispatchProps.onSearchInputChange(e.target.value);
+
+      if (e.target.value.trim()) {
+        history.push(`?search=${e.target.value}`);
+      } else {
+        history.push('/');
+      }
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(SearchForm);

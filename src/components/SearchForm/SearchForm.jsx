@@ -7,10 +7,10 @@ import classes from './SearchForm.module.scss';
 export default function SearchForm({
   input,
   onSearchInputChange,
-  handleFormSubmit
+  handleFormSubmit,
+  handleSearchInputChange
 }) {
   const history = useHistory();
-
   const value = useQuery().get('search');
 
   useEffect(() => {
@@ -28,15 +28,7 @@ export default function SearchForm({
       <Input
         label={input.label}
         value={input.value}
-        handleChange={e => {
-          onSearchInputChange(e.target.value);
-
-          if (e.target.value.trim()) {
-            history.push(`?search=${e.target.value}`);
-          } else {
-            history.push('/');
-          }
-        }}
+        handleChange={handleSearchInputChange.bind(this, history)}
       />
     </form>
   );
