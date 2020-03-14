@@ -7,5 +7,5 @@ export function validateInputs(inputs) {
     }
   }
 
-  return true;
+  return '';
 }

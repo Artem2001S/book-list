@@ -15,7 +15,6 @@ const mapStateToProps = (state, props) => {
 
   return {
     bookData: book,
-    defaultValues: book,
     isEditMode: state.bookControlForm.isEditMode,
     validationStatus: state.bookControlForm.validationMessage,
     inputs: state.bookControlForm.inputs,
@@ -49,7 +48,7 @@ const mergeProps = (stateProps, dispatchProps) => {
       if (stateProps.isEditMode) {
         const validationMessage = validateInputs(stateProps.inputs);
 
-        if (typeof validationMessage === 'string') {
+        if (validationMessage) {
           dispatchProps.validateInputs(validationMessage);
           return;
         }

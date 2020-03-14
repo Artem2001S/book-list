@@ -43,13 +43,11 @@ const mergeProps = (stateProps, dispatchProps) => {
       const validationErrors = validateInputs(stateProps.inputs);
 
       // if don't have validation errors - add book
-      if (typeof validationErrors !== 'string') {
+      if (!validationErrors) {
         const id = uuidv1();
         dispatchProps.validateForm('');
         dispatchProps.onAdd(id, ...stateProps.inputs.map(input => input.value));
       } else {
-        console.log('err');
-
         dispatchProps.validateForm(validationErrors);
       }
     }

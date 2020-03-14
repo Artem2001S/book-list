@@ -7,7 +7,6 @@ import Loader from 'components/Loader/Loader';
 import Error from 'components/Error/Error';
 
 export default function BookControl({
-  defaultValues,
   inputs,
   isEditMode,
   bookData,
@@ -21,13 +20,17 @@ export default function BookControl({
 }) {
   useEffect(() => {
     // send default values to redux store (for inputs)
-    if (defaultValues && changeInputValue) {
-      Object.keys(defaultValues).forEach(name => {
-        changeInputValue(defaultValues[name], name);
+    if (bookData && changeInputValue) {
+      Object.keys(bookData).forEach(name => {
+        changeInputValue(bookData[name], name);
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [bookData]);
+
+  if (isLoading && !bookData) {
+    return <Loader />;
+  }
 
   if (!bookData) {
     return <h1>Book not found</h1>;
@@ -42,7 +45,7 @@ export default function BookControl({
           key={input.name}
           disabled={!isEditMode}
           label={input.label}
-          defaultValue={defaultValues[input.name]}
+          defaultValue={bookData[input.name]}
           handleChange={inputChangeHandlers[input.name]}
         />
       ))}
@@ -63,5 +66,11 @@ BookControl.propTypes = {
   inputs: PropTypes.array,
   bookData: PropTypes.object,
   onSave: PropTypes.func,
-  onInputChange: PropTypes.func
+  isEditMode: PropTypes.bool,
+  validationStatus: PropTypes.string,
+  isLoading: PropTypes.bool,
+  haveErrors: PropTypes.bool,
+  inputChangeHandlers: PropTypes.object,
+  handleFormSubmit: PropTypes.func,
+  changeInputValue: PropTypes.func
 };
