@@ -13,8 +13,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mergeProps = (stateProps, dispatchProps) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-
   return {
     ...stateProps,
     ...dispatchProps,
