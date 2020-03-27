@@ -5,14 +5,14 @@ import {
   RECEIVE_BOOKS
 } from 'redux/actions/actionTypes';
 
-const initialState = [];
+const initialState = { entities: { books: {} }, result: {} };
 
 export default function booksReducer(state = initialState, action) {
   const { payload, type } = action;
 
   switch (type) {
     case RECEIVE_BOOKS:
-      return [...payload];
+      return { ...payload };
     case ADD_BOOK:
       return [...state, payload];
     case DELETE_BOOK:

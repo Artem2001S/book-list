@@ -1,7 +1,11 @@
+import { normalize } from 'normalizr';
 import booksResource from 'redux/api/booksInstance';
+import { bookListSchema } from 'redux/schemas';
 
 export function fetchBooks() {
-  return booksResource.get('/').then(result => result.data);
+  return booksResource
+    .get('/')
+    .then(result => normalize(result.data, bookListSchema));
 }
 
 export function deleteBook(id) {
