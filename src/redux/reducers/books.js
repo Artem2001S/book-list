@@ -5,7 +5,7 @@ import {
   RECEIVE_BOOKS
 } from 'redux/actions/actionTypes';
 
-const initialState = { entities: { books: {} }, result: {} };
+const initialState = { entities: { books: {} }, result: [] };
 
 export default function booksReducer(state = initialState, action) {
   const { payload, type } = action;
@@ -14,7 +14,12 @@ export default function booksReducer(state = initialState, action) {
     case RECEIVE_BOOKS:
       return { ...payload };
     case ADD_BOOK:
-      return [...state, payload];
+      return {
+        entities: {
+          books: { ...state.entities.books, [payload.id]: payload }
+        },
+        result: [...state.result, payload.id]
+      };
     case DELETE_BOOK:
       return state.filter(book => book.id !== payload);
     case UPDATE_BOOK:
