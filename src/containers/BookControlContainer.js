@@ -9,9 +9,10 @@ import {
 } from 'redux/actions/actions';
 import { createInputChangeHandlers } from 'utils/createInputChangeHandlers';
 import { validateInputs } from 'utils/validateInputs';
+import { getBookByIndex } from 'redux/selectors';
 
 const mapStateToProps = (state, props) => {
-  const book = state.books[props.index - 1];
+  const book = getBookByIndex(state, { index: props.index - 1 });
 
   return {
     bookData: book,
@@ -40,8 +41,16 @@ const mergeProps = (stateProps, dispatchProps) => {
     dispatchProps.handleInputChange
   );
 
+  let needToUpdate = false;
+  stateProps.inputs.forEach(input => {
+    if (input.value === '') {
+      needToUpdate = true;
+    }
+  });
+
   return {
     ...stateProps,
+    needToUpdate,
     ...dispatchProps,
     inputChangeHandlers,
     onSave: () => {

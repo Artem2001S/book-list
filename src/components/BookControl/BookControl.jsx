@@ -13,6 +13,7 @@ export default function BookControl({
   validationStatus,
   isLoading,
   haveErrors,
+  needToUpdate,
   inputChangeHandlers,
   onSave,
   handleFormSubmit,
@@ -20,13 +21,12 @@ export default function BookControl({
 }) {
   useEffect(() => {
     // send default values to redux store (for inputs)
-    if (bookData && changeInputValue) {
+    if (bookData && changeInputValue && needToUpdate) {
       Object.keys(bookData).forEach(name => {
         changeInputValue(bookData[name], name);
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bookData]);
+  }, [bookData, changeInputValue]);
 
   if (isLoading && !bookData) {
     return <Loader />;

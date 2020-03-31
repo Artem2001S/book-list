@@ -16,3 +16,9 @@ export const getVisibleBookList = createSelector(
   [getBooks, getSearchValue],
   (books, searchValue) => searchByBookTitleAndAuthors(books, searchValue)
 );
+
+const getIndex = (state, props) => props.index;
+export const getBookByIndex = createSelector(
+  [getBooks, getIndex],
+  (books, index) => books[index]
+);

@@ -26,9 +26,16 @@ export default function booksReducer(state = initialState, action) {
       delete state.entities.books[payload];
       return newState;
     case UPDATE_BOOK:
-      return state.map(book =>
-        book.id === payload.id ? { ...book, ...payload.data } : book
-      );
+      return {
+        ...state,
+        entities: {
+          books: {
+            ...state.entities.books,
+            [payload.id]: { id: payload.id, ...payload.data },
+            '12': { id: payload.id, ...payload.data }
+          }
+        }
+      };
     default:
       return state;
   }
