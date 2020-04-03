@@ -80,6 +80,8 @@ export function deleteBook(bookId) {
 }
 
 export function updateBookRequest(bookId, newData) {
+  console.log('update 2');
+
   return {
     type: REQUEST_UPDATE_BOOK,
     payload: { id: bookId, data: newData }

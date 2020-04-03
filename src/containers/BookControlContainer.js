@@ -7,7 +7,6 @@ import {
   changeBookControlFormEditMode,
   validateBookControlForm
 } from 'redux/actions/actions';
-import { createInputChangeHandlers } from 'utils/createInputChangeHandlers';
 import { validateInputs } from 'utils/validateInputs';
 import { getBookByIndex } from 'redux/selectors';
 
@@ -18,7 +17,6 @@ const mapStateToProps = (state, props) => {
     bookData: book,
     isEditMode: state.bookControlForm.isEditMode,
     validationStatus: state.bookControlForm.validationMessage,
-    inputs: state.bookControlForm.inputs,
     isLoading: state.UI.isLoading,
     haveErrors: state.UI.haveErrors
   };
@@ -27,55 +25,42 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => ({
   handleInputChange: (inputName, e) =>
     dispatch(changeBookControlFormValue(e.target.value, inputName)),
-  changeInputValue: (value, inputName) =>
-    dispatch(changeBookControlFormValue(value, inputName)),
-  onSave: (id, data) => dispatch(updateBookRequest(id, data)),
+  onSave: (id, data) => {
+    return dispatch(updateBookRequest(id, data));
+  },
   changeEditMode: () => dispatch(changeBookControlFormEditMode()),
-  validateInputs: message => dispatch(validateBookControlForm(message)),
+  changeValidationStatus: message => dispatch(validateBookControlForm(message)),
   handleFormSubmit
 });
 
 const mergeProps = (stateProps, dispatchProps) => {
-  const inputChangeHandlers = createInputChangeHandlers(
-    stateProps.inputs,
-    dispatchProps.handleInputChange
-  );
-
-  let needToUpdate = false;
-  stateProps.inputs.forEach(input => {
-    if (input.value === '') {
-      needToUpdate = true;
-    }
-  });
-
   return {
     ...stateProps,
-    needToUpdate,
     ...dispatchProps,
-    inputChangeHandlers,
-    onSave: () => {
-      if (stateProps.isEditMode) {
-        const validationMessage = validateInputs(stateProps.inputs);
+    // onSave: inputss => {
+    //   if (stateProps.isEditMode) {
+    //     const validationMessage = validateInputs(inputss);
+    //     console.log('message: ', validationMessage);
 
-        if (validationMessage) {
-          dispatchProps.validateInputs(validationMessage);
-          return;
-        }
+    //     if (validationMessage) {
+    //       dispatchProps.changeValidationStatus(validationMessage);
+    //       return;
+    //     }
 
-        // get data from inputs
-        const data = stateProps.inputs.reduce((acc, next) => {
-          return {
-            ...acc,
-            [next.name]: next.value
-          };
-        }, {});
+    //     // get data from inputs
+    //     const data = inputss.reduce((acc, next) => {
+    //       return {
+    //         ...acc,
+    //         [next.name]: next.value
+    //       };
+    //     }, {});
 
-        dispatchProps.onSave(stateProps.bookData.id, data);
-        dispatchProps.validateInputs('');
-      }
+    //     dispatchProps.changeValidationStatus('');
+    //     dispatchProps.onSave(stateProps.bookData.id, data);
+    //   }
 
-      dispatchProps.changeEditMode();
-    }
+    //   dispatchProps.changeEditMode();
+    // }
   };
 };
 

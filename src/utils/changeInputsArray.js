@@ -7,3 +7,9 @@ export function updateInputsArray(inputs, inputName, newValue) {
     )
   ];
 }
+
+export function updateInputsArrayCompletely(inputs, data) {
+  return inputs.map(input => {
+    return { ...input, value: data[input.name] };
+  });
+}

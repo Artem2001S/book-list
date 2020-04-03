@@ -17,5 +17,7 @@ export function addBook(book) {
 }
 
 export function updateBook(id, data) {
+  console.log('update to server');
+
   return booksResource.put(`/${id}`, data);
 }
