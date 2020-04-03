@@ -67,7 +67,7 @@ const mergeProps = (stateProps, dispatchProps) => {
         dispatchProps.onSave(stateProps.bookData.id, data);
         dispatchProps.changeValidationStatus('');
       } else {
-        // update inputs
+        // update input values
         dispatchProps.changeInputsArray(
           updateInputsArrayCompletely(stateProps.inputs, stateProps.bookData)
         );

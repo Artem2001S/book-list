@@ -51,15 +51,13 @@ export default function BookControl({
 }
 
 BookControl.propTypes = {
-  defaultValues: PropTypes.object,
   inputs: PropTypes.array,
   bookData: PropTypes.object,
-  onSave: PropTypes.func,
   isEditMode: PropTypes.bool,
   validationStatus: PropTypes.string,
   isLoading: PropTypes.bool,
   haveErrors: PropTypes.bool,
   inputChangeHandlers: PropTypes.object,
-  handleFormSubmit: PropTypes.func,
-  changeInputValue: PropTypes.func
+  onSave: PropTypes.func,
+  handleFormSubmit: PropTypes.func
 };
