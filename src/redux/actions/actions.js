@@ -4,6 +4,7 @@ import {
   CHANGE_ADD_FORM_VALUE,
   CHANGE_SEARCH_FORM_VALUE,
   CHANGE_BOOK_CONTROL_FORM_VALUE,
+  RECEIVE_BOOK_CONTROL_FORM_INPUTS,
   UPDATE_BOOK,
   RESET_ADD_FORM,
   START_API_REQUEST,
@@ -80,8 +81,6 @@ export function deleteBook(bookId) {
 }
 
 export function updateBookRequest(bookId, newData) {
-  console.log('update 2');
-
   return {
     type: REQUEST_UPDATE_BOOK,
     payload: { id: bookId, data: newData }
@@ -119,6 +118,13 @@ export function changeBookControlFormValue(newValue, inputName) {
   return {
     type: CHANGE_BOOK_CONTROL_FORM_VALUE,
     payload: { inputName, newValue }
+  };
+}
+
+export function receiveBookControlFormInputs(inputs) {
+  return {
+    type: RECEIVE_BOOK_CONTROL_FORM_INPUTS,
+    payload: inputs
   };
 }
 

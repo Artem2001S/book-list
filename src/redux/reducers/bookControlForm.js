@@ -2,10 +2,10 @@ import { bookInputs } from 'CONSTANTS';
 import {
   CHANGE_BOOK_CONTROL_FORM_VALUE,
   CHANGE_BOOK_CONTROL_FORM_EDIT_MODE,
-  VALIDATE_BOOK_CONTROL_FORM
+  VALIDATE_BOOK_CONTROL_FORM,
+  RECEIVE_BOOK_CONTROL_FORM_INPUTS
 } from 'redux/actions/actionTypes';
 import { updateInputsArray } from 'utils/changeInputsArray';
-import { validateInputs } from 'utils/validateInputs';
 
 export default function bookControlFormReducer(
   state = { inputs: [...bookInputs], isEditMode: false, validationMessage: '' },
@@ -14,6 +14,8 @@ export default function bookControlFormReducer(
   const { type, payload } = action;
 
   switch (type) {
+    case RECEIVE_BOOK_CONTROL_FORM_INPUTS:
+      return { ...state, inputs: payload };
     case CHANGE_BOOK_CONTROL_FORM_VALUE:
       return {
         ...state,
@@ -26,7 +28,7 @@ export default function bookControlFormReducer(
     case CHANGE_BOOK_CONTROL_FORM_EDIT_MODE:
       return { ...state, isEditMode: !state.isEditMode };
     case VALIDATE_BOOK_CONTROL_FORM:
-      return { ...state, validationMessage: validateInputs(state.inputs) };
+      return { ...state, validationMessage: payload };
     default:
       return state;
   }
