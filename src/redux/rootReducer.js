@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import booksReducer from './reducers/books';
-import addFormInputsReducer from './reducers/addFormInputs';
-import searchFormReducer from './reducers/searchForm';
-import bookControlFormReducer from './reducers/bookControlForm';
-import UIReducer from './reducers/UI';
+import booksReducer from './reducers/booksReducer';
+import addFormInputsReducer from './reducers/addFormInputsReducer';
+import searchFormReducer from './reducers/searchFormReducer';
+import bookControlFormReducer from './reducers/bookControlFormReducer';
+import UIReducer from './reducers/UIDataReducer';
 
 export default combineReducers({
   books: booksReducer,
