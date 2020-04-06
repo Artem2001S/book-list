@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './rootReducer';
 import createSagaMiddleware from 'redux-saga';
 import { compose } from 'recompose';
-import { rootSaga } from './sagas';
+import { rootSaga } from './sagas/rootSaga';
 import { loadBooks } from './actions/actions';
 
 const LOCAL_STORAGE_KEY = 'redux-store';
