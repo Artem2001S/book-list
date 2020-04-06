@@ -1,4 +1,4 @@
-import { bookInputs } from 'CONSTANTS';
+import { bookInputs } from 'constants.js';
 import {
   CHANGE_ADD_FORM_VALUE,
   RESET_ADD_FORM,
